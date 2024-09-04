@@ -80,7 +80,7 @@ def movimento_da_maquina(pilhas):
     else:
         for i in range(0, len(pilhas)):
             if pilhas[i] ^ NimSum < pilhas[i]:
-                pilhas[i] = pilhas[i] - NimSum
+                pilhas[i] = pilhas[i] ^ NimSum
                 print("A máquina tirou palitos. As pilhas agora são: " + str(pilhas))
                 break
 

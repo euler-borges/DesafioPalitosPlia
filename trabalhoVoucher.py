@@ -1,21 +1,15 @@
 def main():
     pilhas = definir_jogo()
     jogar(pilhas)
-
-
 def definir_jogo():
     pilhas = []
     npilhas = input("Quantas pilhas são? ")
     for i in range(0, int(npilhas)):
         npalitos = input("Quantos palitos tem a pilha " + str(i+1) + "? ")
         pilhas.append(int(npalitos))
-    
     return pilhas
-
-
 def jogar(pilhas):
     primeiro = int(input("Quem começa? (Digite 1 para o jogador ou 0 para a máquina)"))
-
     if primeiro == 1:
         movimento_da_pessoa(pilhas)
     while sum(pilhas) > 0:
@@ -27,27 +21,17 @@ def jogar(pilhas):
         if sum(pilhas) == 0:
             print("Você ganhou!")
             break
-
-
 def movimento_da_pessoa(pilhas):
     #separe as pilhas com palitos
     pilhas_com_palitos = []
     for i in range(0, len(pilhas)):
         if pilhas[i] > 0:
             pilhas_com_palitos.append(i+1)
-    #escolhe a pilha a se retirar os palitos
     pilha_escolhida = escolhe_pilha(pilhas_com_palitos)
-
-    #escolhe a quantidade de palitos a se retirar
     npalitos = escolhe_palitos(pilhas, pilha_escolhida)
-    
-    
     pilhas[pilha_escolhida] = pilhas[pilha_escolhida] - npalitos
-    
     print("Você tirou palitos. As pilhas agora são: " + str(pilhas))
-
     return pilhas
-
 def escolhe_pilha(pilhas_com_palitos):
     pilha = int(input("De qual pilha você quer tirar palitos? Escolha entre " + str(pilhas_com_palitos)+ ": "))
     if pilha not in pilhas_com_palitos:
@@ -55,7 +39,6 @@ def escolhe_pilha(pilhas_com_palitos):
         return escolhe_pilha(pilhas_com_palitos)
     else:
         return pilha - 1
-
 def escolhe_palitos(pilhas, pilha_escolhida):
     palitos = int(input("Quantos palitos você quer tirar? "))
     if palitos > pilhas[pilha_escolhida]:
@@ -66,7 +49,6 @@ def escolhe_palitos(pilhas, pilha_escolhida):
         return escolhe_palitos(pilhas, pilha_escolhida)
     else: 
         return palitos
-
 def movimento_da_maquina(pilhas):
     NimSum = 0
     pilha_com_palitos = 0
@@ -83,8 +65,6 @@ def movimento_da_maquina(pilhas):
                 pilhas[i] = pilhas[i] ^ NimSum
                 print("A máquina tirou palitos. As pilhas agora são: " + str(pilhas))
                 break
-
     return pilhas
-
 if __name__ == "__main__":
     main()
